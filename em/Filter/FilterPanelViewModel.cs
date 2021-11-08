@@ -66,38 +66,38 @@ public class FilterPanelViewModel
         if (isCCVisible)
         {
             List<CostCenter> SelectedCC = FilterCostCentersViewModel.SelectedCCList;
-
-            _ = (FilterCostCentersViewModel.MainComboBoxSelectedIndex,
+            filterSet.TitleSelectedCCGroup = (FilterCostCentersViewModel.MainComboBoxSelectedIndex,
                 FilterCostCentersViewModel.OtherComboBoxSelectedIndex,
-                FilterCostCentersViewModel.SlaveComboBoxSelectedIndex) switch
-            {
-                (0, 0, 0) => filterSet.TitleSelectedCCGroup = "все",
-                ( > 0, -1, -1) => filterSet.TitleSelectedCCGroup = SelectedCC[0].Name,
-                (-1, > 0, -1) => filterSet.TitleSelectedCCGroup = SelectedCC[0].Name,
-                (-1, -1, > 0) => filterSet.TitleSelectedCCGroup = SelectedCC[0].Name,
-                (0, -1, -1) => filterSet.TitleSelectedCCGroup = "технологические основные",
-                (-1, 0, -1) => filterSet.TitleSelectedCCGroup = "технологические прочие",
-                (0, 0, -1) => filterSet.TitleSelectedCCGroup = "все технологические",
-                (-1, -1, 0) => filterSet.TitleSelectedCCGroup = "вспомогательные",
-                (_, _, _) => filterSet.TitleSelectedCCGroup = "выборочно"
-            };
+                FilterCostCentersViewModel.SlaveComboBoxSelectedIndex) 
+                switch
+                {
+                    (0, 0, 0) => "все",
+                    ( > 0, -1, -1) => SelectedCC[0].Name,
+                    (-1, > 0, -1) => SelectedCC[0].Name,
+                    (-1, -1, > 0) => SelectedCC[0].Name,
+                    (0, -1, -1) => "технологические основные",
+                    (-1, 0, -1) => "технологические прочие",
+                    (0, 0, -1) => "все технологические",
+                    (-1, -1, 0) => "вспомогательные",
+                    (_, _, _) => "выборочно"
+                };
             FilterCostCentersViewModel.IsChanged = false;
             filterSet.SelectedCC = SelectedCC;
         }
         if (isERVisible)
         {
             List<EnergyResource> SelectedER = FilterEnergyResourcesViewModel.SelectedERList;
-            _ = (FilterEnergyResourcesViewModel.PrimeComboBoxSelectedIndex,
+            filterSet.TitleSelectedERGroup = (FilterEnergyResourcesViewModel.PrimeComboBoxSelectedIndex,
                 FilterEnergyResourcesViewModel.SecondaryComboBoxSelectedIndex)
                 switch
-            {
-                (0, 0) => filterSet.TitleSelectedERGroup = "все",
-                ( > 0, -1) => filterSet.TitleSelectedERGroup = SelectedER[0].Name,
-                (-1, > 0) => filterSet.TitleSelectedERGroup = SelectedER[0].Name,
-                (0, -1) => filterSet.TitleSelectedERGroup = "первичные",
-                (-1, 0) => filterSet.TitleSelectedERGroup = "вторичные",
-                (_, _) => filterSet.TitleSelectedERGroup = "выборочно"
-            };
+                {
+                    (0, 0) => "все",
+                    ( > 0, -1) => SelectedER[0].Name,
+                    (-1, > 0) => SelectedER[0].Name,
+                    (0, -1) => "первичные",
+                    (-1, 0) => "вторичные",
+                    (_, _) => "выборочно"
+                };
             FilterEnergyResourcesViewModel.IsChanged = false;
             filterSet.SelectedER = SelectedER;
         }
