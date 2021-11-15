@@ -34,6 +34,7 @@
         <DataGrid Grid.Row="0"
                     x:Name="dataGridCC"
                     ItemsSource="{Binding Source={StaticResource cvsDataTableCC}}"
+                  ClipboardCopyMode="IncludeHeader"
                     Margin="5,10"
                     CanUserAddRows="False" 
                     FrozenColumnCount="7"
